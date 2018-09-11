@@ -1,0 +1,17 @@
+## WARNIGN: THIS IS A CHEF TEMPLATE. DO NOT EDIT THIS AT A CHEF-MANAGED HOST!
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/html
+
+        LogFormat "%h %l %u %t \"%r\" %>s %b %D \"%{Referer}i\" \"%{User-agent}i\"" mtail
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog "${APACHE_LOG_DIR}/access.log" mtail
+
+        ProxyPreserveHost On
+
+        ProxyPass / http://127.0.0.1:8888/
+        ProxyPassReverse / http://127.0.0.1:8888/
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet

@@ -1,0 +1,17 @@
+[Unit]
+Description=Client in loop to stress Shaw's Sinatra app
+After=systemd-remount-fs.service
+ConditionPathExists=/home/vagrant/sinatra/client_in_loop.rb
+## WARNING: THIS IS A CHEF TEMPLATE. DO NOT EDIT THIS AT A CHEF-MANAGED HOST!
+
+[Service]
+Type=simple
+GuessMainPID=True
+User=vagrant
+Group=vagrant
+WorkingDirectory=<%= @sinatra_home_dir %>
+ExecStart=/usr/bin/ruby client_in_loop.rb
+TimeoutSec=5
+
+[Install]
+WantedBy=multi-user.target

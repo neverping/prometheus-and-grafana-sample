@@ -1,0 +1,19 @@
+[Unit]
+Description=Sinatra for Shaw API
+After=systemd-remount-fs.service
+ConditionPathExists=/home/vagrant/sinatra/config.ru
+ConditionPathExists=/home/vagrant/sinatra/shaw.rb
+## WARNING: THIS IS A CHEF TEMPLATE. DO NOT EDIT THIS AT A CHEF-MANAGED HOST!
+
+[Service]
+Type=simple
+GuessMainPID=True
+User=vagrant
+Group=vagrant
+WorkingDirectory=<%= @sinatra_home_dir %>
+ExecStart=/usr/bin/rackup
+TimeoutSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

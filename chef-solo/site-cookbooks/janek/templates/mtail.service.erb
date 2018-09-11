@@ -1,0 +1,17 @@
+[Unit]
+Description=mtail extract whitebox monitoring data from application logs for collection into a timeseries database
+After=syslog.target network.target
+## WARNIGN: THIS IS A CHEF TEMPLATE. DO NOT EDIT THIS AT A CHEF-MANAGED HOST!
+
+[Service]
+Type=simple
+GuessMainPID=True
+User=root
+Group=root
+WorkingDirectory=/vagrant/
+ExecStart=<%= @bin_file %> -port 3093 -log_dir <%= @log_dir %> -logs <%= @log_dir %>access.log -address 0.0.0.0 -metric_push_interval_seconds 5 -progs <%= @mtail_config_file %>
+TimeoutSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

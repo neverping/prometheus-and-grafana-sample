@@ -1,0 +1,19 @@
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=<%= @user %>
+Group=<%= @user %>
+Type=simple
+GuessMainPID=yes
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=<%= @bin_dir %>/prometheus \
+    --config.file <%= @config_dir %>/prometheus.yml \
+    --storage.tsdb.path <%= @var_dir %>/ \
+    --web.console.templates=<%= @config_dir %>/consoles \
+    --web.console.libraries=<%= @config_dir %>/console_libraries
+
+[Install]
+WantedBy=multi-user.target

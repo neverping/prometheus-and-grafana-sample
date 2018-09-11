@@ -1,0 +1,36 @@
+global:
+  scrape_interval:     10s
+  evaluation_interval: 20s
+rule_files:
+  - 'alert.rules'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+         - targets: ['localhost:9090']
+
+  - job_name: 'mtail'
+    scrape_interval: 5s
+    static_configs:
+         - targets: ['<%= @mtail_on_shaw %>:3093']
+    relabel_configs:
+       - source_labels: [ __address__ ]
+         target_label: instance
+         regex: <%= @mtail_on_shaw %>:3093
+         replacement: shaw_webserver
+
+  - job_name: 'node'
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+    <%- @managed_nodes.each do |server, ip| -%>
+        - <%= ip %>:9100
+    <%- end -%>
+    relabel_configs:
+    <%- @managed_nodes.each do |server, ip| -%>
+       - source_labels: [ __address__ ]
+         target_label: instance
+         regex: <%= ip %>:9100
+         replacement: <%= server %>
+    <%- end -%>

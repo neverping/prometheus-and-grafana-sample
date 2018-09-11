@@ -1,0 +1,26 @@
+## WARNIGN: THIS IS A CHEF TEMPLATE. DO NOT EDIT THIS AT A CHEF-MANAGED HOST!
+
+log_format apache_common '$remote_addr - - [$time_local] "$request" $status $bytes_sent "$http_referer" "$http_user_agent"';
+
+upstream sinatra {
+    server localhost:8888 fail_timeout=0;
+}
+
+server {
+  listen  80 default_server;
+  server_name localhost;
+
+  access_log  /var/log/nginx/access.log apache_common;
+
+  proxy_http_version  1.1;  
+  proxy_set_header    Host $http_host;
+
+  location /status {
+      stub_status;
+  }
+
+  location / {
+      proxy_pass  http://sinatra;
+  }
+
+}
