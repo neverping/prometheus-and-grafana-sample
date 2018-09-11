@@ -29,4 +29,4 @@ In the beginning, I was thinking about which app I should monitor. I thought usi
 
 When building everything altogether, it took a very long time, almost three weeks. Most of the problem was figuring out how to configure Prometheus properly and understand its unique SQL format, the PromQL. Then I found out the 'play.grafana.org' playground and things became easier to me. Scraping data out of the nginx took me another time, so I have to switch to Apache where it was working properly. By this time, I took almost three weeks, so I have to make it even easily than I thought.
 
-In conclusion, I was able to finish both approaches, surely some of them needs to be improved. On the other hand, both of them are mutable, stable and usable.
+In conclusion, I was able to finish it, surely it needs improvements. On the other hand, this solution for now is mutable, stable and usable.
