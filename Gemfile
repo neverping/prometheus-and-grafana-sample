@@ -24,4 +24,8 @@ gem 'sinatra', '1.4.7'
 gem 'sinatra-contrib', '1.4.7'
 
 # Test
-gem 'serverspec'
+group :test, :development do
+  gem 'rspec'
+  gem 'serverspec'
+  gem 'rack-test'
+end

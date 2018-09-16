@@ -288,7 +288,9 @@ DEPENDENCIES
   knife-solo
   knife-solo_data_bag
   librarian-chef
+  rack-test
   rails
+  rspec
   serverspec
   sinatra (= 1.4.7)
   sinatra-contrib (= 1.4.7)
