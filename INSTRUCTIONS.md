@@ -16,9 +16,9 @@ Finishing up, you need to load the Gems using this command:
 
 `bundle install`
 
-### Ensure you are using Vagrant 2.0.1 or newer.
+### Ensure you are using Vagrant 2.0.2 or newer.
 
-This Vagrantifle was configured to run using Vagrant 2.0.1 or newer and it uses newer syntax. This won't work with older Vagrant version, but It can be downgraded later if needed, but it is not recommended, since they are deprecated (mostly).
+This Vagrantifle was configured to run using Vagrant 2.0.2 or newer and it uses newer syntax. This won't work with older Vagrant version, but It can be downgraded later if needed, but it is not recommended, since they are deprecated (mostly).
 
 You can download Vagrant here:
 
