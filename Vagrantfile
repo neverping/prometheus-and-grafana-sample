@@ -22,15 +22,15 @@ Vagrant.configure("2") do |config|
     v.memory = 1024
     v.cpus = 2
     # Attempts to increase network speed. Check below for details
-    # 
+    #
     # Here a list of virtual network adapters you can try if you feel the
-    # guest machines are not performing well. To me, the best one was 
+    # guest machines are not performing well. To me, the best one was
     # virtio.
     #
     # V-NIC:  Am79C970A, Am79C973, 82540EM, 82543GC, 82545EM, and virtio
     v.customize ["modifyvm", :id, "--nictype1", "virtio"]
     v.customize ["modifyvm", :id, "--nictype2", "virtio"]
-    # 
+    #
     # minimal = Mac, kvm = Linux, hyperv = Windows or 'none' if doesn't work.
     v.customize ["modifyvm", :id, "--paravirtprovider", "minimal"]
   end
@@ -50,7 +50,13 @@ Vagrant.configure("2") do |config|
       # pior upgrading chef here.
       #
       # https://github.com/chef/chef/issues/4948
-      chef.version = "12.10.24"
+      #
+      # UPDATE: It seems this issue was involved with Vagrant, and now it is working
+      # properly. Be sure you have Vagrant 2.0.2 and above. If you can't update your
+      # vagrant installation, you can uncommet chef.version below and it will work
+      # as well.
+      #
+      #chef.version = "12.10.24"
       chef.channel = "stable"
       chef.cookbooks_path = ["chef-solo/site-cookbooks", "chef-solo/cookbooks"]
       chef.roles_path = "chef-solo/roles"
@@ -76,7 +82,13 @@ Vagrant.configure("2") do |config|
       # pior upgrading chef here.
       #
       # https://github.com/chef/chef/issues/4948
-      chef.version = "12.10.24"
+      #
+      # UPDATE: It seems this issue was involved with Vagrant, and now it is working
+      # properly. Be sure you have Vagrant 2.0.2 and above. If you can't update your
+      # vagrant installation, you can uncommet chef.version below and it will work
+      # as well.
+      #
+      #chef.version = "12.10.24"
       chef.channel = "stable"
       chef.cookbooks_path = ["chef-solo/site-cookbooks", "chef-solo/cookbooks"]
       chef.roles_path = "chef-solo/roles"
