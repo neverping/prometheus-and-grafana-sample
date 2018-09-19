@@ -2,9 +2,6 @@
 
 Here are a list of things I should / like to do:
 
-## Test coverage for Sinatra
-- Create test suite for Sinatra app. We do have tests for our Vagrant installation using ServerSpec, but I think I need one for Sinatra.
-
 ## InfluxDB for Prometheus.
 - Check if InfluxDB would be a better time series database solution for Prometheus rather than its own storage engine.
 
