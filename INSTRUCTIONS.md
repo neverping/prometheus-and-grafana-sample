@@ -2,33 +2,45 @@
 
 Below are the instructions of how to setup this project in your computer.
 
-### Ensure you have rvm and bundler installed and configured.
+### Ensure you have rvm (or rbenv) and bundler installed and configured.
 
 The RVM install procedure can be found here:
 
 `https://rvm.io/rvm/install`
 
+If you don't like rvm, you can use rbenv as your Ruby environment manager. Check this post below:
+
+`https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04`
+
 After that, you can install bundler using the following command:
 
 `gem install bundler`
 
-Finishing up, you need to load the Gems using this command:
+Finally, you need to install all the gems used for this project. You can do this by executing the following command:
 
 `bundle install`
 
 ### Ensure you are using Vagrant 2.0.2 or newer.
 
-This Vagrantifle was configured to run using Vagrant 2.0.2 or newer and it uses newer syntax. This won't work with older Vagrant version, but It can be downgraded later if needed, but it is not recommended, since they are deprecated (mostly).
+This Vagrantifle was configured with Vagrant 2.0.2 or above and it uses 2.x Vagrantfile syntax. This won't work with older Vagrant versions such as Vagrant 1.8.
 
 You can download Vagrant here:
 
 `https://www.vagrantup.com/`
 
+On Ubuntu machines, you can execute:
+
+`sudo apt-get install vagrant`
+
 ### Ensure you are using Oracle VirtualBox
 
-All the testing was done using the latest version of Virtualbox. You can download it over here:
+All the testing was done using Virtualbox. The tested version was 5.2.10. You can download it over here:
 
 `https://www.virtualbox.org/`
+
+On Ubuntu machines, you can execute:
+
+`sudo apt-get install virtualbox`
 
 ### Internet connection
 
@@ -40,7 +52,7 @@ For this assignment, we have two VM's:
 
 #### Shaw
 
-Shaw is our app server, which is running Apache HTTP Server 2.4, and a dummy app on Sinatra. All the Apache data is being collected by Google mtail for Prometheus
+Shaw is our app server, which is running Apache HTTP Server 2.4, Node Expoter 0.16.0 and a dummy app on Sinatra. All the Apache data is being collected by Google mtail for Prometheus
  server, which is being requested by Vickers.
 
 Shaw name came from Elizabeth Shaw, a character from Prometheus movie. She was an archaeologist who visited LV-223 moon and was in a expedition to find out the homeworld of the Engineers.
@@ -51,7 +63,7 @@ Her IP address is `192.168.123.101`
 
 #### Vickers
 
-Vickers is our monitoring server, which is running Prometheus 2.2.0 and Grafana 5.0, both on their latest stable version. Vickers is also running a Prometheus Node Exporter to collect data from our own server. Finally, Vickers is running a Ruby script in a 'while true' loop requesting data to Shaw.
+Vickers is our monitoring server, which is running Prometheus 2.4.1, Node Exporter 0.16.0 and Grafana 5.2.4, both on their latest stable version. Vickers is also running a Prometheus Node Exporter to collect data from our own server. Finally, Vickers is running a Ruby script in a 'while true' loop requesting data to Shaw.
 
 Vickers name came from Meredith Vickers, a character from Prometheus movie. Daughter of Peter Weyland, responsible for the Prometheus voyage into LV-223 moon.
 
@@ -78,7 +90,7 @@ login: admin
 password: admin
 ```
 
-After when you logged in, you have to add two custom dashboards to display the datas.
+After when you logged in, you have to add two custom dashboards to display our custom metrics.
 
 ### Adding the custom dashboards
 

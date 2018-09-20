@@ -9,7 +9,7 @@ default['prometheus'] = {
     "password" => "$1$xyz$2y45ZjJxPOH874GmBjP0p0"
   },
   "server" => {
-    "version" => "2.2.0",
+    "version" => "2.4.1",
     "arch" => "linux-amd64",
     "var_dir" => "/var/lib/prometheus",
     "etc_dir" => "/etc/prometheus",
@@ -23,7 +23,7 @@ default['prometheus'] = {
     "log_dir" => "/var/log/apache2/"
   },
   "node_exporter" => {
-    "version" => "0.15.2",
+    "version" => "0.16.0",
     "arch" => "linux-amd64",
     "bin_dir" => "/usr/local/bin",
     "managed_nodes" => {

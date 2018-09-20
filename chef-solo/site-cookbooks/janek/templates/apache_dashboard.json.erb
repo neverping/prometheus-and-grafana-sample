@@ -139,7 +139,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Request by type for this user",
+      "title": "HTTP verbs used by this user",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -220,7 +220,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Request by URL by this user.",
+      "title": "HTTP URI requested by this user.",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -382,7 +382,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "General findings by crew member",
+      "title": "General findings by all crew members",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -463,7 +463,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Request per second by status",
+      "title": "HTTP Reponse status per second",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -619,23 +619,15 @@
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "Connections Established",
-          "refId": "B"
-        },
-        {
-          "expr": "node_netstat_Tcp_EstabResets{instance=\"shaw\"}",
-          "format": "time_series",
-          "hide": false,
-          "intervalFactor": 1,
-          "legendFormat": "Connection Reset",
           "refId": "A"
         },
         {
-          "expr": "node_netstat_TcpExt_TCPTimeWaitOverflow{instance=\"shaw\"}",
+          "expr": "node_netstat_Tcp_ActiveOpens{instance=\"shaw\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "Time Wait",
-          "refId": "C"
+          "legendFormat": "Connection Actively Open",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -711,7 +703,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(node_network_receive_bytes{instance=\"shaw\"}[2m])) by (instance)",
+          "expr": "sum(irate(node_network_receive_bytes_total{instance=\"shaw\"}[2m])) by (instance)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -719,7 +711,7 @@
           "refId": "B"
         },
         {
-          "expr": "sum(irate(node_network_transmit_bytes{instance=\"shaw\"}[2m])) by (instance)",
+          "expr": "sum(irate(node_network_transmit_bytes_total{instance=\"shaw\"}[2m])) by (instance)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
