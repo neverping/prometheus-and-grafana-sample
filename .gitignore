@@ -20,3 +20,4 @@ doc/
 
 .vagrant
 sinatra/contents.yml
+.rake_tasks~
