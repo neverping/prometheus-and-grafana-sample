@@ -30,5 +30,3 @@ def create_fallback_config_file(server)
 
   return config_file.path
 end
-
-create_fallback_config_file('shaw')
