@@ -1,6 +1,7 @@
 require 'serverspec'
 require 'net/ssh'
 require 'tempfile'
+load 'spec/ssh_fallback.rb'
 
 set :backend, :ssh
 
@@ -17,13 +18,22 @@ end
 
 host = ENV['TARGET_HOST']
 
-`vagrant up #{host}`
+## Vagrant was able to execute properly
+if system('vagrant version > /dev/null 2>&1')
+  `vagrant up #{host}`
+  config = Tempfile.new('', Dir.tmpdir)
+  config.write(`vagrant ssh-config #{host}`)
+  config.close
+  config_file = config.path
+else
+  # If you are using rbenv, it might break all vagrant commands
+  # when executing ruby or other rbenv commands because it will
+  # override systems gems, as Vagrant is a Ruby program outside
+  # rbenv.
+  config_file = create_fallback_config_file(host)
+end
 
-config = Tempfile.new('', Dir.tmpdir)
-config.write(`vagrant ssh-config #{host}`)
-config.close
-
-options = Net::SSH::Config.for(host, [config.path])
+options = Net::SSH::Config.for(host, [config_file])
 
 options[:user] ||= Etc.getlogin
 

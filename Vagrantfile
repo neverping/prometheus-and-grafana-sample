@@ -42,6 +42,7 @@ Vagrant.configure("2") do |config|
     vickers.vm.box = "ubuntu/xenial64"
     vickers.vm.hostname = "ubuntu-xenial"
     vickers.vm.network :private_network, ip: "192.168.123.101"
+    vickers.vm.network :forwarded_port, guest: 22, host: 2231, id: "ssh", auto_correct: false
 
     vickers.vm.provision :chef_solo do |chef|
       # Chef-solo on its latest version is breaking on Vagrant.
@@ -74,6 +75,7 @@ Vagrant.configure("2") do |config|
     shaw.vm.box = "ubuntu/xenial64"
     shaw.vm.hostname = "ubuntu-xenial"
     shaw.vm.network :private_network, ip: "192.168.123.102"
+    shaw.vm.network :forwarded_port, guest: 22, host: 2232, id: "ssh", auto_correct: false
 
     shaw.vm.provision :chef_solo do |chef|
       # Chef-solo on its latest version is breaking on Vagrant.
