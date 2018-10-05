@@ -42,7 +42,7 @@ end
 
 
 template "#{node['prometheus']['server']['etc_dir']}/prometheus.yml" do
-  source 'prometheus.yml.erb'
+  source 'prometheus/prometheus.yml.erb'
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'
@@ -52,14 +52,14 @@ template "#{node['prometheus']['server']['etc_dir']}/prometheus.yml" do
 end
 
 template "#{node['prometheus']['server']['etc_dir']}/alert.rules" do
-  source 'alert.rules.erb'
+  source 'prometheus/alert.rules.erb'
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'
 end
 
 template '/lib/systemd/system/prometheus.service' do
-  source 'prometheus.service.erb'
+  source 'prometheus/prometheus.service.erb'
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'      

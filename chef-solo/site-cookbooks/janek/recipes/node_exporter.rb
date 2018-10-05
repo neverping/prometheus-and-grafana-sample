@@ -29,7 +29,7 @@ bash 'extract_node_exporter' do
 end
 
 template '/lib/systemd/system/node_exporter.service' do
-  source 'node_exporter.service.erb'
+  source 'prometheus/node_exporter.service.erb'
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'      
