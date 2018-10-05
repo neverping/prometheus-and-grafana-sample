@@ -52,14 +52,14 @@ directory node['prometheus']['mtail']['etc_dir'] do
 end
 
 template "#{node['prometheus']['mtail']['etc_dir']}/nginx.mtail" do
-  source 'nginx.mtail.erb'
+  source 'mtail/nginx.mtail.erb'
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'
 end
 
 template "#{node['prometheus']['mtail']['etc_dir']}/apache_common.mtail" do
-  source 'apache_common.mtail.erb'
+  source 'mtail/apache_common.mtail.erb'
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'
@@ -104,7 +104,7 @@ template '/lib/systemd/system/sinatra.service' do
 end
 
 template '/lib/systemd/system/mtail.service' do
-  source 'mtail.service.erb'
+  source 'mtail/mtail.service.erb'
   owner 'root'
   group 'root'
   mode '0644'
