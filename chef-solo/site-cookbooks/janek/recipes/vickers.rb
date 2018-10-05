@@ -27,7 +27,7 @@ include_recipe "janek::prometheus"
 include_recipe "janek::node_exporter"
 
 template '/usr/share/grafana/public/app/plugins/datasource/prometheus/plugin.json' do
-  source 'grafana-plugin.json.erb'
+  source 'grafana/grafana-plugin.json.erb'
   mode '0644'
   owner 'root'
   group 'root'
