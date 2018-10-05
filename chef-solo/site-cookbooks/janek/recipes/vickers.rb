@@ -35,7 +35,7 @@ end
 
 %w{apache_dashboard.json prometheus_dashboard.json}.each do |jsons|
   template "/usr/share/grafana/public/app/plugins/datasource/prometheus/dashboards/#{jsons}" do
-    source "#{jsons}.erb"
+    source "grafana/#{jsons}.erb"
     mode '0644'
     owner 'root'
     group 'root'
