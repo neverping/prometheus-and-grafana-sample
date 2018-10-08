@@ -82,14 +82,14 @@ file '/etc/apache2/sites-enabled/000-default.conf' do
 end
 
 template '/etc/nginx/sites-enabled/vh-shaw.conf' do
-  source 'nginx-vh-shaw.conf.erb'
+  source 'webservers/nginx-vh-shaw.conf.erb'
   owner 'www-data'
   group 'www-data'
   mode '0644'
 end
 
 template '/etc/apache2/sites-enabled/vh-shaw.conf' do
-  source 'apache2-vh-shaw.conf.erb'
+  source 'webservers/apache2-vh-shaw.conf.erb'
   owner 'www-data'
   group 'www-data'
   mode '0644'
