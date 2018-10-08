@@ -101,6 +101,7 @@ template '/lib/systemd/system/sinatra.service' do
   group 'root'
   mode '0644'
   variables(:sinatra_home_dir => node['sinatra_home_dir'])
+  notifies :run, 'execute[systemd_daemon_reload]', :immediately
 end
 
 template '/lib/systemd/system/mtail.service' do
@@ -112,6 +113,7 @@ template '/lib/systemd/system/mtail.service' do
     :log_dir => node['prometheus']['mtail']['log_dir'],
     :mtail_config_file => "#{node['prometheus']['mtail']['etc_dir']}/apache_common.mtail",
   )
+  notifies :run, 'execute[systemd_daemon_reload]', :immediately
 end
 
 ## Apache2 modules needs to be enabled by a shell command.
@@ -142,10 +144,19 @@ end
 
 service 'sinatra.service' do
   action [:enable, :start]
-  subscribes :reload, "template[/lib/systemd/system/sinatra.service]", :immediately
+  subscribes :restart, "template[/lib/systemd/system/sinatra.service]", :delayed
+  notifies :run, 'execute[systemd_daemon_reload]', :immediately
 end
 
 service 'mtail.service' do
   action [:enable, :start]
-  subscribes :reload, "template[/lib/systemd/system/mtail.service]", :immediately
+  subscribes :restart, "template[/lib/systemd/system/mtail.service]docker", :delayed
+  notifies :run, 'execute[systemd_daemon_reload]', :immediately
+end
+
+# Althought we are using recent Chef versions and we could be using systemd_unit resource,
+# this chef is keeping compatibility with Chef 12.10.24, which does not provide systemd_unit.
+execute 'systemd_daemon_reload' do
+  command 'systemctl daemon-reload'
+  action :nothing
 end

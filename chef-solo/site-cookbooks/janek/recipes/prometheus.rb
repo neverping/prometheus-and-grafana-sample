@@ -56,6 +56,7 @@ template "#{node['prometheus']['server']['etc_dir']}/alert.rules" do
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'
+  notifies :reload, "service[prometheus]", :delayed
 end
 
 template '/lib/systemd/system/prometheus.service' do
@@ -63,7 +64,8 @@ template '/lib/systemd/system/prometheus.service' do
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'      
-  notifies :reload, "service[prometheus]", :immediately
+  notifies :reload, "service[prometheus]", :delayed
+  notifies :run, 'execute[systemd_daemon_reload]', :immediately
   variables(bin_dir: node['prometheus']['server']['bin_dir'],
     config_dir: node['prometheus']['server']['etc_dir'],
     var_dir: node['prometheus']['server']['var_dir'],
@@ -74,5 +76,13 @@ end
 service 'prometheus' do
   action [:enable, :start]
   supports :reload => true
-  subscribes :reload, "template[#{node['prometheus']['server']['etc_dir']}/prometheus.yml]", :immediately
+  subscribes :reload, "template[#{node['prometheus']['server']['etc_dir']}/prometheus.yml]", :delayed
+  notifies :run, 'execute[systemd_daemon_reload]', :immediately
+end
+
+# Althought we are using recent Chef versions and we could be using systemd_unit resource,
+# this chef is keeping compatibility with Chef 12.10.24, which does not provide systemd_unit.
+execute 'systemd_daemon_reload' do
+  command 'systemctl daemon-reload'
+  action :nothing
 end

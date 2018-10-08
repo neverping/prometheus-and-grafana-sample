@@ -33,7 +33,8 @@ template '/lib/systemd/system/node_exporter.service' do
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'      
-  notifies :reload, "service[node_exporter]", :immediately
+  notifies :reload, "service[node_exporter]", :delayed
+  notifies :run, 'execute[systemd_daemon_reload]', :immediately
   variables(bin_dir: node['prometheus']['node_exporter']['bin_dir'],
     user: node['prometheus']['user_definition']['name'],
   )
@@ -42,5 +43,13 @@ end
 service 'node_exporter' do
   action [:enable, :start]
   supports :restart => true, :reload => true
-  subscribes :reload, 'template[/lib/systemd/system/node_exporter.service]', :immediately
+  subscribes :restart, 'template[/lib/systemd/system/node_exporter.service]', :delayed
+  notifies :run, 'execute[systemd_daemon_reload]', :immediately
+end
+
+# Althought we are using recent Chef versions and we could be using systemd_unit resource,
+# this chef is keeping compatibility with Chef 12.10.24, which does not provide systemd_unit.
+execute 'systemd_daemon_reload' do
+  command 'systemctl daemon-reload'
+  action :nothing
 end

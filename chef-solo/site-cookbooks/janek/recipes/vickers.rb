@@ -87,6 +87,7 @@ template '/lib/systemd/system/client_in_loop.service' do
   group 'root'
   mode '0644'
   variables(:sinatra_home_dir => node['sinatra_home_dir'])
+  notifies :run, 'execute[systemd_daemon_reload]', :immediately
 end
 
 service 'client_in_loop.service' do
@@ -95,4 +96,11 @@ end
 
 service 'influxdb.service' do
   action [:enable, :start]
+end
+
+# Althought we are using recent Chef versions and we could be using systemd_unit resource,
+# this chef is keeping compatibility with Chef 12.10.24, which does not provide systemd_unit.
+execute 'systemd_daemon_reload' do
+  command 'systemctl daemon-reload'
+  action :nothing
 end
