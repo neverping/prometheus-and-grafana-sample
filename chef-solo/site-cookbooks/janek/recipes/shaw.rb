@@ -96,7 +96,7 @@ template '/etc/apache2/sites-enabled/vh-shaw.conf' do
 end
 
 template '/lib/systemd/system/sinatra.service' do
-  source 'sinatra.service.erb'
+  source 'ruby/sinatra.service.erb'
   owner 'root'
   group 'root'
   mode '0644'

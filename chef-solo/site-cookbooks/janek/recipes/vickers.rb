@@ -82,7 +82,7 @@ execute "rsync_app" do
 end
 
 template '/lib/systemd/system/client_in_loop.service' do
-  source 'client_in_loop.service.erb'
+  source 'ruby/client_in_loop.service.erb'
   owner 'root'
   group 'root'
   mode '0644'
