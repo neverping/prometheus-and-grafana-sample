@@ -105,7 +105,7 @@ You will see a list of the default dashboards. Two of them were customized by me
 
 After that, click on the four squares icon `(Dashboard icon)` and select `home`.
 
-On the top left, at the right side of the Grafana logo, click on `home` and select `Apache dashboard` or `Prometheus - Demo dashboard`.
+On the top left, at the right side of the Grafana logo, click on `home` and select `Apache dashboard` or `Prometheus - Dashboard`.
 
 Below are the information for each dashboards.
 
