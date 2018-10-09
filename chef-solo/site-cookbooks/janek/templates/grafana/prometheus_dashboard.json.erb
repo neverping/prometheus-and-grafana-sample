@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1521680554911,
+  "iteration": 1539106570890,
   "links": [
     {
       "asDropdown": false,
@@ -622,6 +622,7 @@
       "targets": [
         {
           "expr": "sum by(mode)(irate(node_cpu_seconds_total{job=\"node\", instance=~\"$node\", mode!=\"idle\"}[5m])) > 0",
+          "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{mode}}",
@@ -650,7 +651,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "percent",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -663,7 +664,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {
@@ -711,6 +716,7 @@
       "targets": [
         {
           "expr": "irate(node_disk_io_time_seconds_total{job=\"node\", instance=~\"$node\"}[5m]) * 100",
+          "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{device}}",
@@ -738,7 +744,7 @@
       },
       "yaxes": [
         {
-          "format": "percentunit",
+          "format": "percent",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -751,7 +757,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {
@@ -876,7 +886,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {
@@ -980,7 +994,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {
@@ -1025,6 +1043,13 @@
       "points": false,
       "renderer": "flot",
       "repeat": "filesystem_mountpoint",
+      "scopedVars": {
+        "filesystem_mountpoint": {
+          "selected": false,
+          "text": "/",
+          "value": "/"
+        }
+      },
       "seriesOverrides": [
         {
           "alias": "free",
@@ -1090,7 +1115,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "5m",
@@ -1106,7 +1135,10 @@
       {
         "allFormat": "pipe",
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "shaw",
+          "value": "shaw"
+        },
         "datasource": "${DS_PROMETHEUS}",
         "hide": 1,
         "hideLabel": true,
@@ -1129,7 +1161,10 @@
       {
         "allFormat": "regex wildcard",
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "${DS_PROMETHEUS}",
         "hide": 2,
         "hideVariable": true,
@@ -1181,7 +1216,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Prometheus - Demo Dashboard",
+  "title": "Prometheus Dashboard",
   "uid": "000000029",
   "version": 1
 }
