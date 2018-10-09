@@ -33,9 +33,9 @@ template '/usr/share/grafana/public/app/plugins/datasource/prometheus/plugin.jso
   group 'root'
 end
 
-%w{apache_dashboard.json prometheus_dashboard.json}.each do |jsons|
-  template "/usr/share/grafana/public/app/plugins/datasource/prometheus/dashboards/#{jsons}" do
-    source "grafana/#{jsons}.erb"
+%w{apache_dashboard google_the_four_golden_signals grafana-plugin prometheus_dashboard the_red_method the_use_method}.each do |dashboard|
+  template "/usr/share/grafana/public/app/plugins/datasource/prometheus/dashboards/#{dashboard}.json" do
+    source "grafana/#{dashboard}.json.erb"
     mode '0644'
     owner 'root'
     group 'root'
