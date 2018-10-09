@@ -33,7 +33,7 @@ template '/lib/systemd/system/node_exporter.service' do
   owner node['prometheus']['user_definition']['name']
   group node['prometheus']['user_definition']['name']
   mode '0644'      
-  notifies :reload, "service[node_exporter]", :delayed
+  notifies :restart, "service[node_exporter]", :delayed
   notifies :run, 'execute[systemd_daemon_reload]', :immediately
   variables(bin_dir: node['prometheus']['node_exporter']['bin_dir'],
     user: node['prometheus']['user_definition']['name'],
