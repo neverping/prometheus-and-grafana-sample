@@ -101,7 +101,7 @@ Click on `Prometheus` and then on `Dashboards`.
 You will see a list of the default dashboards. Two of them were customized by me. Click on `import` so you can use them. Here are their names:
 
 - Apache Dashboard
-- Prometheus - Demo Dashboard 
+- Prometheus - Dashboard 
 
 After that, click on the four squares icon `(Dashboard icon)` and select `home`.
 
@@ -113,7 +113,7 @@ Below are the information for each dashboards.
 
 Apache Dashboad is collecting data from our Sinatra app over Apache using Google mTail. You have a filter called "User" which is the name of the crew members from Prometheus ship whom explored the underground cave on LV-223 moon. Each user is, in reality, an User Agent string from our Ruby while true loop script. You can change which user you want to view and explore the individual metrics for each crew member.
 
-#### Prometheus - Demo Dashboard
+#### Prometheus - Dashboard
 
 Here you can check both Shaw and Vickers status. You can switch from each server at the top left combo box. You can see the most well know data usually being monitored. All these datas came from Prometheus Node Explorer installed on each Guest VM.
 
