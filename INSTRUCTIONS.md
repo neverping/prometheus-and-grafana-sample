@@ -117,6 +117,20 @@ Apache Dashboad is collecting data from our Sinatra app over Apache using Google
 
 Here you can check both Shaw and Vickers status. You can switch from each server at the top left combo box. You can see the most well know data usually being monitored. All these datas came from Prometheus Node Explorer installed on each Guest VM.
 
+#### Additional dashboards
+
+There are three adittional dashboards and they were just a practical sample of the three main topics about monitoring, which are:
+
+- From the Google SRE book (The Four Golden Signals): Latency, Traffic, Errors, Saturation
+- USE Method (from Brendan Gregg): Utilization, Saturation, Errors
+- RED Method (from Tom Wilkie): Rate, Errors, and Duration
+
+They were based on the following article below:
+
+`https://www.infoq.com/articles/monitoring-SRE-golden-signals`
+
+In the near future, I hope doing more work on top of them and make it more informative.
+
 ### Testing.
 
 You can use 'rake' to run 'serverspec' test suite. It will check if everything is ok.
