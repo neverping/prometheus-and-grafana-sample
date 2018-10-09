@@ -27,6 +27,12 @@
       "id": "prometheus",
       "name": "Prometheus",
       "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": "5.0.0"
     }
   ],
   "annotations": {
@@ -50,6 +56,20 @@
   "links": [],
   "panels": [
     {
+      "content": "#### The Four Golden Signals\n\n(...)\nThe four golden signals of monitoring are latency, traffic, errors, and saturation. If you can only measure four metrics of your user-facing system, focus on these four.\n\n- **Latency:** The time it takes to service a request. (..)\n\n- **Traffic:** A measure of how much demand is being placed on your system, measured in a high-level system-specific metric.(...)\n\n- **Errors:** The rate of requests that fail, either explicitly (e.g., HTTP 500s), implicitly (for example, an HTTP 200 success response, but coupled with the wrong content), or by policy (...).\n\n- **Saturation:** How \"full\" your service is. (...) Finally, saturation is also concerned with predictions of impending saturation, such as \"It looks like your database will fill its hard drive in 4 hours.\"\n\nIf you measure all four golden signals and page a human when one signal is problematic (or, in the case of saturation, nearly problematic), your service will be at least decently covered by monitoring.",
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "links": [],
+      "mode": "markdown",
+      "title": "Google SRE Book",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -61,7 +81,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 6
       },
       "id": 2,
       "legend": {
@@ -147,7 +167,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 6
       },
       "id": 4,
       "legend": {
@@ -233,7 +253,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 15
       },
       "id": 6,
       "legend": {
@@ -318,7 +338,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 15
       },
       "id": 8,
       "legend": {
@@ -392,7 +412,7 @@
       }
     }
   ],
-  "refresh": "10s",
+  "refresh": "1m",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
