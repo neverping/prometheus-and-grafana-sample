@@ -16,7 +16,8 @@ else
   set :sudo_password, ENV['SUDO_PASSWORD']
 end
 
-host = ENV['TARGET_HOST']
+# So I can run shaw_spec.rb with no errors
+host = ENV['TARGET_HOST'] || 'localhost'
 
 ## Vagrant was able to execute properly
 if system('vagrant version > /dev/null 2>&1')
