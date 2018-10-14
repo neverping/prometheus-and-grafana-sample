@@ -32,7 +32,7 @@ end
   end
 end
 
-%w{config.ru contents.yml shaw.rb}.each do |sinatra_files|
+%w{config.ru shaw.rb}.each do |sinatra_files|
   describe file("/home/vagrant/sinatra/#{sinatra_files}") do
     it { should exist }
     it { should be_owned_by 'vagrant' }
