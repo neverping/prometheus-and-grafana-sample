@@ -3,7 +3,7 @@ ENV['RACK_ENV'] = 'test'
 require 'spec_helper'
 require 'rack/test'
 require 'test/unit'
-require_relative '../sinatra/shaw'
+require_relative '../../sinatra/shaw'
 
 # TODO: IMPROVE THIS
 mocked_file = 'contents.yml'

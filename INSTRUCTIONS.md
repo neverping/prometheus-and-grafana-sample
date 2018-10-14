@@ -145,7 +145,7 @@ The test can only be run after all your guest machines are up and vagrant was ab
 To run the Sinatra tests, you can invoke the following command
 
 ```bash
-rspec spec/shaw_spec.rb
+rspec spec/sinatra/shaw_spec.rb
 ```
 
 The output will be something like this below:
