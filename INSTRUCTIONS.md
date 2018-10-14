@@ -140,4 +140,30 @@ rake spec:shaw     # Run serverspec tests to shaw
 rake spec:vickers  # Run serverspec tests to vickers
 ```
 
-The test can only be run after a full Guest VM installation.
+The test can only be run after all your guest machines are up and vagrant was able to provision them as well.
+
+To run the Sinatra tests, you can invoke the following command
+
+```bash
+rspec spec/shaw_spec.rb
+```
+
+The output will be something like this below:
+
+```bash
+No examples found.
+
+Finished in 0.00045 seconds (files took 1.09 seconds to load)
+0 examples, 0 failures
+
+Loaded suite (...)/bin/rspec
+Started
+....
+
+Finished in 0.047524714 seconds.
+-------------------------------------------------------------------------------------
+4 tests, 7 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
+100% passed
+-------------------------------------------------------------------------------------
+84.17 tests/s, 147.29 assertions/s
+```
